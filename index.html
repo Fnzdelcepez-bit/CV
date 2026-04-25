@@ -1,1 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FNZDELCEPEZ | Staff CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #33353b;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-strong: rgba(255, 255, 255, 0.13);
+      --white: #ffffff;
+      --muted: #cfd4df;
+      --text: #f3f5f8;
+      --accent: #8fa3c7;
+      --accent-2: #dfe7f5;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+      --border: rgba(255, 255, 255, 0.16);
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Poppins", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(143, 163, 199, 0.22), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.08), transparent 24%),
+        radial-gradient(circle at 50% 95%, rgba(143, 163, 199, 0.12), transparent 30%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    .background-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .bubble {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      filter: blur(1px);
+      animation: floatBubble 11s ease-in-out infinite;
+    }
+
+    .bubble:nth-child(1) { top: 8%; left: 8%; animation-delay: 0s; }
+    .bubble:nth-child(2) { top: 64%; left: 82%; width: 240px; height: 240px; animation-delay: 2s; }
+    .bubble:nth-child(3) { top: 36%; left: 72%; width: 120px; height: 120px; animation-delay: 4s; }
+    .bubble:nth-child(4) { top: 78%; left: 12%; width: 150px; height: 150px; animation-delay: 1s; }
+
+    @keyframes floatBubble {
+      0%, 100% { transform: translateY(0) translateX(0); opacity: 0.35; }
+      50% { transform: translateY(-38px) translateX(22px); opacity: 0.7; }
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 42px 0 60px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      animation: slideDown .8s ease both;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .brand-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 20px var(--accent-2);
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .navlinks a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: .25s ease;
+    }
+
+    .navlinks a:hover {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.10);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 0.9fr 1.4fr;
+      gap: 26px;
+      align-items: stretch;
+      margin-top: 34px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      background: var(--card);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+      transition: transform .25s ease, background .25s ease, border-color .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      background: var(--card-strong);
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .profile-card {
+      padding: 30px;
+      animation: fadeUp .85s ease both;
+    }
+
+    .avatar-wrap {
+      width: 190px;
+      height: 190px;
+      margin: 0 auto 22px;
+      padding: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fff, rgba(255,255,255,.25));
+      animation: softPulse 3.5s ease-in-out infinite;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(135deg, rgba(0, 18, 48, .95), rgba(0, 35, 72, .85));
+      overflow: hidden;
+      position: relative;
+    }
+
+    .avatar::before,
+    .avatar::after {
+      content: "";
+      position: absolute;
+      top: 58px;
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #eeeeee, #9c9c9c);
+      box-shadow: 0 0 15px rgba(255,255,255,.35);
+    }
+
+    .avatar::before { left: 44px; }
+    .avatar::after { right: 44px; }
+
+    .avatar span {
+      position: absolute;
+      bottom: 50px;
+      width: 18px;
+      height: 18px;
+      background: rgba(0, 12, 38, .75);
+      border-radius: 5px;
+    }
+
+    @keyframes softPulse {
+      0%, 100% { box-shadow: 0 0 0 rgba(255,255,255,.0); }
+      50% { box-shadow: 0 0 34px rgba(255,255,255,.22); }
+    }
+
+    .profile-card h1 {
+      text-align: center;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .profile-card .role {
+      text-align: center;
+      color: var(--accent-2);
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 10px;
+      margin-bottom: 26px;
+    }
+
+    .about-text {
+      color: var(--muted);
+      line-height: 1.72;
+      font-size: 14px;
+      text-align: justify;
+    }
+
+    .hero-content {
+      display: grid;
+      gap: 26px;
+      animation: fadeUp .95s ease both .08s;
+    }
+
+    .main-title {
+      padding: 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 250px;
+    }
+
+    .main-title .label {
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .main-title h2 {
+      font-size: clamp(42px, 8vw, 96px);
+      line-height: .95;
+      letter-spacing: -3px;
+    }
+
+    .main-title p {
+      margin-top: 18px;
+      color: var(--muted);
+      max-width: 700px;
+      line-height: 1.7;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .stat {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    section {
+      margin-top: 26px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 24px;
+    }
+
+    .section-title .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.10);
+      border: 1px solid var(--border);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 26px;
+    }
+
+    .section-card {
+      padding: 30px;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 16px;
+      padding-left: 22px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: rgba(255,255,255,.22);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 18px 20px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.11);
+      transition: .25s ease;
+    }
+
+    .timeline-item:hover {
+      transform: translateX(8px);
+      background: rgba(255,255,255,.12);
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -24px;
+      top: 24px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 18px var(--accent-2);
+    }
+
+    .timeline-item h3 {
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.13);
+      color: var(--accent-2);
+      font-size: 13px;
+      transition: .2s ease;
+    }
+
+    .chip:hover {
+      transform: translateY(-4px) scale(1.03);
+      background: rgba(255,255,255,.14);
+    }
+
+    .rank-card {
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .rank-card .rank {
+      font-size: 34px;
+      font-weight: 800;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.07);
+      color: var(--muted);
+      text-decoration: none;
+      transition: .25s ease;
+    }
+
+    .contact-item:hover {
+      color: var(--white);
+      transform: translateX(6px);
+      background: rgba(255,255,255,.12);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 34px;
+      font-size: 13px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: .8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navlinks {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: min(94%, 1180px);
+        padding-top: 22px;
+      }
+
+      .profile-card,
+      .main-title,
+      .section-card {
+        padding: 22px;
+        border-radius: 26px;
+      }
+
+      .avatar-wrap {
+        width: 155px;
+        height: 155px;
+      }
+
+      .profile-card .role {
+        letter-spacing: 6px;
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-glow">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <main class="page">
+    <nav class="navbar">
+      <div class="brand"><span class="brand-dot"></span> FNZDELCEPEZ</div>
+      <div class="navlinks">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#skills">Skills</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <aside class="card profile-card" id="sobre-mi">
+        <div class="avatar-wrap">
+          <div class="avatar"><span></span></div>
+        </div>
+        <h1>FNZDELCEPEZ</h1>
+        <div class="role">STAFF</div>
+        <p class="about-text">
+          Me desempeño como staff con un alto nivel de responsabilidad y enfoque en el cumplimiento de mis funciones, procurando siempre un entorno organizado, justo y profesional. He asumido roles de liderazgo como Manager, supervisando equipos, distribuyendo tareas y apoyando decisiones clave para el correcto desarrollo del servidor.
+        </p>
+      </aside>
+
+      <div class="hero-content">
+        <section class="card main-title">
+          <span class="label">Curriculum Staff / Management</span>
+          <h2>Staff<br>Profile</h2>
+          <p>
+            Perfil enfocado en liderazgo, organización, resolución de conflictos, comunicación efectiva y gestión de equipos dentro de comunidades competitivas.
+          </p>
+        </section>
+
+        <div class="stats-grid">
+          <div class="card stat"><strong data-count="2025">0</strong><span>Inicio de experiencia</span></div>
+          <div class="card stat"><strong data-count="13">0</strong><span>Roles de management</span></div>
+          <div class="card stat"><strong>Head</strong><span>Rango más alto</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="grid-2 reveal" id="experiencia">
+      <div class="card section-card">
+        <h2 class="section-title"><span class="icon">💼</span> Experiencia en Management</h2>
+        <div class="timeline">
+          <div class="timeline-item"><h3>Manager</h3><p>Dirección general, toma de decisiones y supervisión del equipo.</p></div>
+          <div class="timeline-item"><h3>Head Staff</h3><p>Supervisión avanzada del equipo staff, apoyo en decisiones internas y control de casos importantes.</p></div>
+          <div class="timeline-item"><h3>Staff Manager</h3><p>Control de actividad, organización interna y seguimiento de staff.</p></div>
+          <div class="timeline-item"><h3>Security Staff</h3><p>Apoyo en seguridad interna, revisión de casos sensibles y prevención de riesgos dentro del servidor.</p></div>
+          <div class="timeline-item"><h3>Global Modality Manager</h3><p>Gestión de modalidades y coordinación entre áreas.</p></div>
+          <div class="timeline-item"><h3>HCF Manager</h3><p>Supervisión de modalidad HCF, sanciones, eventos y soporte.</p></div>
+          <div class="timeline-item"><h3>KitMap Manager</h3><p>Organización y control del equipo asignado a KitMap.</p></div>
+          <div class="timeline-item"><h3>Practice Manager</h3><p>Gestión de modalidad Practice y apoyo en resolución de casos.</p></div>
+          <div class="timeline-item"><h3>Media Manager</h3><p>Administración del Media Team, actividad, requisitos y promotes.</p></div>
+          <div class="timeline-item"><h3>Recruitment Manager</h3><p>Gestión de convocatorias, revisión de postulaciones y selección de nuevos miembros.</p></div>
+          <div class="timeline-item"><h3>Account Staff</h3><p>Administración de cuentas, seguimiento de casos y soporte en procesos relacionados.</p></div>
+          <div class="timeline-item"><h3>Mentor Manager</h3><p>Supervisión de mentores, apoyo a nuevos staff y seguimiento de su desarrollo.</p></div>
+          <div class="timeline-item"><h3>Staff Anticheat</h3><p>Revisión de sanciones, apoyo en casos del anticheat y seguimiento de posibles infracciones.</p></div>
+        </div>
+      </div>
+
+      <div class="card section-card rank-card">
+        <h2 class="section-title"><span class="icon">🏆</span> Rango más alto</h2>
+        <div class="rank">Head-Admin</div>
+        <p class="about-text">Rango máximo alcanzado dentro de mi experiencia como staff.</p>
+      </div>
+    </section>
+
+    <section class="grid-2 reveal" id="skills">
+      <div class="card section-card">
+        <h2 class="section-title"><span class="icon">⚙️</span> Skills</h2>
+        <div class="skills">
+          <span class="chip">Dedicado</span>
+          <span class="chip">Confiable</span>
+          <span class="chip">Perseverante</span>
+          <span class="chip">Directivo</span>
+          <span class="chip">Iniciativo</span>
+          <span class="chip">Metódico</span>
+          <span class="chip">Práctico</span>
+          <span class="chip">Expresivo</span>
+          <span class="chip">Crítico</span>
+          <span class="chip">Flexible</span>
+          <span class="chip">Productivo</span>
+          <span class="chip">Cooperativo</span>
+        </div>
+      </div>
+
+      <div class="card section-card">
+        <h2 class="section-title"><span class="icon">🌐</span> Idiomas</h2>
+        <div class="skills">
+          <span class="chip">English</span>
+          <span class="chip">Español</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section-card reveal" id="contacto">
+      <h2 class="section-title"><span class="icon">📩</span> Contacto</h2>
+      <div class="contact-list">
+        <a class="contact-item" href="mailto:fnzcepez@gmail.com">✉️ fnzcepez@gmail.com</a>
+        <a class="contact-item" href="#">💬 Discord: thanatophobies (ID: 899631436343152660)</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      © 2026 FNZDELCEPEZ — Staff CV
+    </footer>
+  </main>
+
+  <script>
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealOnScroll = () => {
+      revealElements.forEach((element) => {
+        const top = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (top < windowHeight - 80) {
+          element.classList.add('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    const counters = document.querySelectorAll('[data-count]');
+
+    counters.forEach((counter) => {
+      const target = Number(counter.dataset.count);
+      let current = 0;
+      const step = Math.max(1, Math.floor(target / 80));
+
+      const update = () => {
+        current += step;
+        if (current >= target) {
+          counter.textContent = target;
+          return;
+        }
+        counter.textContent = current;
+        requestAnimationFrame(update);
+      };
+
+      update();
+    });
+
+    document.addEventListener('mousemove', (event) => {
+      const cards = document.querySelectorAll('.card');
+      const x = event.clientX / window.innerWidth - 0.5;
+      const y = event.clientY / window.innerHeight - 0.5;
+
+      cards.forEach((card, index) => {
+        const speed = (index % 4 + 1) * 0.8;
+        card.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+      });
+    });
+
+    document.addEventListener('mouseleave', () => {
+      document.querySelectorAll('.card').forEach((card) => {
+        card.style.transform = 'translate(0, 0)';
+      });
+    });
+  </script>
+</body>
+</html>
